@@ -1,8 +1,8 @@
 var config = require('../../config.json');
 var apiModel = require('../model/ApiModel.js');
 
-
 var models = {
+    "login" : require('../model/loginModel'),
     "dashboard": require('../model/dashboardModel')
 }
 function currentVersion(req,res) {
