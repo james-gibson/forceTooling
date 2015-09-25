@@ -43,6 +43,7 @@ var registerRoute = curry(function(securityLevel, category, method, name, urlPat
 });
 
 const registerPublicRoute = registerRoute(PUBLIC, null);
+const registerAuthenticatedRoute = registerRoute(SECURED, null);
 const registerSystemAdminRoute = registerRoute(SECURED, ADMINISTRATION.SYSTEM);
 const registerUserAdminRoute = registerRoute(SECURED, ADMINISTRATION.USER);
 
@@ -50,6 +51,7 @@ const registerUserAdminRoute = registerRoute(SECURED, ADMINISTRATION.USER);
 
 //Methods
 exports.registerPublicRoute                 = registerPublicRoute;
+exports.registerSecuredRoute                = registerAuthenticatedRoute;
 exports.registerSystemAdministrationRoute   = registerSystemAdminRoute;
 exports.registerUserAdministrationRoute     = registerUserAdminRoute;
 
