@@ -2,6 +2,9 @@ var config = require('../../config.json');
 var apiModel = require('../model/ApiModel.js');
 
 
+var models = {
+    "dashboard": require('../model/dashboardModel')
+}
 function currentVersion(req,res) {
     var result = {
         version:"0.1",
@@ -54,6 +57,9 @@ function preRegisterRoute(route) {
 }
 
 function setupRoutes() {
+    for(var prop in models){
+        models[prop].init(apiModel);
+    }
     //Not sure if these should be in this class
     apiModel.registerPublicRoute('get', 'displayCurrentVersion', '', currentVersion, null, 'Gets the current API version information.');
     apiModel.registerPublicRoute('get', 'displayAvailableRoutes', '/routes/', getRoutes, null, 'Displays the available routes.');
