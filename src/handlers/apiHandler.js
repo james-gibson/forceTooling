@@ -1,4 +1,4 @@
-var config = require('src/config.json');
+var config = require('../../config.json');
 var apiModel = require('../model/ApiModel.js');
 
 

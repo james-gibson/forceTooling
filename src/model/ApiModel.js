@@ -1,6 +1,6 @@
 var curry = require('curry');
 var EventEmitter = require('events').EventEmitter;
-var config = require('src/config.json');
+var config = require('../../config.json');
 var   registeredRoute = new EventEmitter()
     , registeredRouteError = new EventEmitter();
 
