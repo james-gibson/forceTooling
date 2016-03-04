@@ -17,7 +17,7 @@ function currentVersion(req,res) {
 
 function getRoutes(req,res) {
     var urls = [];
-
+    var apiRoutes = apiModel.routes;
     for (var route in apiRoutes) {
         var url = {};
         url[route] = {
@@ -63,7 +63,7 @@ function setupRoutes() {
     //Not sure if these should be in this class
     apiModel.registerPublicRoute('get', 'displayCurrentVersion', '', currentVersion, null, 'Gets the current API version information.');
     apiModel.registerPublicRoute('get', 'displayAvailableRoutes', '/routes/', getRoutes, null, 'Displays the available routes.');
-    apiModel.registerPublicRoute('get', 'test', '/test', getRoutes, {'param1': {'required': true, 'dataType': 'blob'}}, 'Test Description');
+
 }
 
 exports.setup = setup;
