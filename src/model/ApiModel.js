@@ -7,7 +7,7 @@ var   registeredRoute = new EventEmitter()
 const PUBLIC = "public"
     , SECURED = "secured"
     , ADMINISTRATION = { SYSTEM: "systemAdministration", USER: "userAdministration"
-    };
+};
 
 var routes = {};
 
