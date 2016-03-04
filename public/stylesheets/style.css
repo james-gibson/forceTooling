@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+p {
+  display: inline;
+}
+
+p.label {
+  font-weight: bold;
+}
+
+p.label:after {
+  content: ': ';
+}
+
+.inline-block {
+  display: inline-block;
+}
