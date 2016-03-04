@@ -1,7 +1,15 @@
 extends layout
 block content
-   h1= title
-   p your login token is #{token}
-   form
-      //Link to api for deletion of app
-      button Delete APTO
+    h1= title
+    p your login token is #{token}
+    form
+       //Link to api for deletion of app
+       button Delete APTO
+    div(class="sObjectList")
+        each obj in objects
+            div(class="sObject")
+                span(class="inline-block")
+                    p(class="label")=obj.label
+                    p=obj.name
+
+
