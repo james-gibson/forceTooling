@@ -1,4 +1,7 @@
+"use strict";
 var conn = require('./ForceConnection.js').connection;
+var listCustomObjects = require('./forceModel/listCustomObjects.js');
+var describeSObject = require('./forceModel/describeSObject.js');
 
 var init = function(apiModel) {
     apiModel.registerSecuredRoute('get'
@@ -7,14 +10,24 @@ var init = function(apiModel) {
         , dashboard
         , {
             'token':   {'required': true, 'dataType': 'string'}
-        }
+          }
         , 'View dashboard');
 }
 
+
 var dashboard =function(req,res,next){
-    res.render('dashboard', { title: 'Dashboard',token: req.query.token });
+    listCustomObjects.init(conn);
+    //describeSObject.init(conn);
+    function render(result){
+        //var a = describeSObject.execute(result[0].name);
+        res.render('dashboard', { title: 'Dashboard',
+                                  token: req.query.token,
+                                  objects: result
+        });
+    }
+    var p = listCustomObjects.execute();
+
+    p.then(x => render(x));
 }
-
-
 
 exports.init = init;
