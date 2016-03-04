@@ -1,5 +1,4 @@
 var conn = require('./ForceConnection.js').connection;
-var apiModel = require('../model/ApiModel.js');
 
 var init = function(apiModel) {
     apiModel.registerPublicRoute('get'
