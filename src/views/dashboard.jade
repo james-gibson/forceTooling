@@ -1,5 +1,12 @@
 extends layout
 block content
     h1= title
+
     div(class="sObjectList")
         each obj in objects
+            paper-card(heading=obj.name)
+                div(class="card-content")
+
+                div(class="card-actions")
+                    paper-button Share
+                    paper-button(raised) Raised button
