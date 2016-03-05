@@ -12,7 +12,7 @@ function execute(sObjectName){
 
         var results = [];
 
-        conn.sobject(sObjectName).describe(function(err, meta) {
+        conn.sobject(sObjectName).describe$(function(err, meta) {
             if (err) {console.error(err); reject(err);}
 
             resolve(meta);
