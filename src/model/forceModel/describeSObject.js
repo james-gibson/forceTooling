@@ -14,10 +14,8 @@ function execute(sObjectName){
 
         conn.sobject(sObjectName).describe(function(err, meta) {
             if (err) {console.error(err); reject(err);}
-            //console.log('Label : ' + meta.label);
-            //console.log('Num of Fields : ' + meta.fields.length);
+
             resolve(meta);
-            // ...
         });
     });
 
