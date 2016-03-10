@@ -6,38 +6,37 @@ function init(connection){
     listObjects.init(conn);
 }
 
+function isCustomObject(value){
+    return value.custom ? value : undefined;
+}
+
 function execute(){
     var promise = new Promise(function(resolve, reject){
         if(!conn) {reject('Invalid Force.com connection');}
 
         var results = [];
-        function isCustomObject(value){
-            if(String(value.name).indexOf('__c') > -1) {return value;}
-        }
+
         listObjects.execute()
-            .then(
-                function(x){
-                    results = x.map(isCustomObject)
-                               .filter(function(n){ return n != undefined });
+            .then(function(obj){
+                results = obj.map(isCustomObject)
+                           .filter(function(n){ return n != undefined });
 
-                    var pendingDescribes = results.map(function(x) {
-                        var describePromise = new Promise(function(resolve, reject) {
-                            console.log('Getting: '+x.name);
-                            conn.sobject(x.name).describe(function(err, meta) {
-                                if (err) { reject(err); }
-                                console.log('returning: '+meta);
-                                resolve(meta);
-                            });
+                var pendingDescribes = results.map(function(x) {
+                    var describePromise = new Promise(function(resolve, reject) {
+                        conn.sobject(x.name).describe(function(err, meta) {
+                            if (err) { reject(err); }
+                            resolve(meta);
                         });
-
-                        return describePromise;
                     });
 
-                    Promise.all(pendingDescribes).then(function(values) {
-                        resolve(values);
-                    });
-                }
-            )
+                    return describePromise;
+                });
+
+                Promise.all(pendingDescribes).then(function(values) {
+                    resolve(values);
+                });
+            }
+        )
     });
 
     return promise;

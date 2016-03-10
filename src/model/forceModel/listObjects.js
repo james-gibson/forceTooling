@@ -9,7 +9,7 @@ function execute(){
     var promise = new Promise(function(resolve, reject){
         if(!conn) {reject('Invalid Force.com connection');}
 
-        conn.describeGlobal(function(err, res) {
+        conn.describeGlobal$(function(err, res) {
             if (err) { return promise.reject(err); }
             var results = [];
             res.sobjects.forEach(function(x) {results.push(x)});

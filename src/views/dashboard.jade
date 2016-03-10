@@ -1,15 +1,15 @@
 extends layout
 block content
     h1= title
-    p your login token is #{token}
-    form
-       //Link to api for deletion of app
-       button Delete APTO
+
     div(class="sObjectList")
         each obj in objects
-            div(class="sObject")
-                span(class="inline-block")
-                    p(class="label")=obj.label
-                    p=obj.name
+            paper-card(heading=obj.label)
+                div(class="card-content")
 
-
+                div(class="card-actions" data-childRelationships=obj.childRelationships.length )
+                    div(class="horizontal justified")
+                        if obj.deletable
+                            iron-icon(icon="icons:delete")
+                        each child in obj.childRelationships
+                            iron-icon(icon="places:child-care")

@@ -22,3 +22,17 @@ p.label:after {
 .inline-block {
   display: inline-block;
 }
+
+.sObjectList {
+  @apply(--layout-vertical);
+  @apply(--layout-wrap);
+    height: 100%;
+    width: 100%;
+}
+.sObjectList > paper-card {
+    box-sizing: border-box;
+    max-width: 184px;
+    margin: 4px;
+    flex: 0 0 auto;
+    padding: 5px;
+}
