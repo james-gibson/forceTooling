@@ -4,9 +4,12 @@ block content
 
     div(class="sObjectList")
         each obj in objects
-            paper-card(heading=obj.name)
+            paper-card(heading=obj.label)
                 div(class="card-content")
 
-                div(class="card-actions")
-                    paper-button Share
-                    paper-button(raised) Raised button
+                div(class="card-actions" data-childRelationships=obj.childRelationships.length )
+                    div(class="horizontal justified")
+                        if obj.deletable
+                            iron-icon(icon="icons:delete")
+                        each child in obj.childRelationships
+                            iron-icon(icon="places:child-care")

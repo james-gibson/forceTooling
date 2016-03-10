@@ -27,7 +27,29 @@ var dashboard =function(req,res,next){
     }
     var p = listCustomObjects.execute();
 
-    p.then(x => render(x));
+    p.then(function(objects){
+        var objectMap = {};
+
+        objects.map(function(x) {
+            console.log(x.name);
+            if(!objectMap[x.name]) {
+                objectMap[x.name] = x;
+            }
+        });
+
+        var results = objects.map(function(x) {
+            var customChildren = [];
+            for(var i  in x.childRelationships){
+                if(objectMap[x.childRelationships[i].childSObject]){
+                    customChildren.push(x.childRelationships[i]);
+                }
+            }
+            x.childRelationships = customChildren;
+            return x;
+        });
+
+        render(results)
+    });
 }
 
 exports.init = init;

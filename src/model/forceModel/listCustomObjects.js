@@ -7,7 +7,7 @@ function init(connection){
 }
 
 function isCustomObject(value){
-    if(String(value.name).indexOf('__c') > -1) {return value;}
+    return value.custom ? value : undefined;
 }
 
 function execute(){
@@ -23,7 +23,7 @@ function execute(){
 
                 var pendingDescribes = results.map(function(x) {
                     var describePromise = new Promise(function(resolve, reject) {
-                        conn.sobject(x.name).describe$(function(err, meta) {
+                        conn.sobject(x.name).describe(function(err, meta) {
                             if (err) { reject(err); }
                             resolve(meta);
                         });
