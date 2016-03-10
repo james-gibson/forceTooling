@@ -3,7 +3,7 @@
   "description": "A tool designed to make configuring Salesforce simpler",
   "main": "app.js",
   "authors": [
-    "James Gibson <james@aptotude.com>"
+    "James Gibson <james.the.nodester@gmail.com>"
   ],
   "license": "MIT",
   "moduleType": [
