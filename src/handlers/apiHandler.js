@@ -32,7 +32,7 @@ function getRoutes(req, res) {
 }
 
 function setup(app) {
-    apiModel.routeRegistered.on('registeredSuccessfully', function (route) {
+    apiModel.routeRegistered.on('registeredSuccessfully', function(route) {
         if (!route.method) {
             // throw error
         } else {
@@ -41,7 +41,7 @@ function setup(app) {
         }
     });
 
-    apiModel.routeRegisteredError.on('registrationError', function (route) {
+    apiModel.routeRegisteredError.on('registrationError', function(route) {
         console.log('Unable to register route:', route);
     });
 

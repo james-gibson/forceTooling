@@ -14,7 +14,6 @@ var init = function(apiModel) {
         , 'View dashboard');
 }
 
-
 var dashboard =function(req, res, next) {
     listCustomObjects.init(conn);
     
