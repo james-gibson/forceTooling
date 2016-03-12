@@ -5,17 +5,17 @@ var models = {
     "login" : require('../model/loginModel'),
     "dashboard": require('../model/dashboardModel')
 }
-function currentVersion(req,res) {
+function currentVersion(req, res) {
     var result = {
         version:"0.1",
         about:"This API acts as a gateway for disparate data sources",
         why:"Why not?",
-        authentication: {URL:config.host +"api/authenticate",queryParameters:["user","key"]}
+        authentication: {URL:config.host +"api/authenticate", queryParameters:["user", "key"]}
     };
     res.json(result);
 }
 
-function getRoutes(req,res) {
+function getRoutes(req, res) {
     var urls = [];
     var apiRoutes = apiModel.routes;
     for (var route in apiRoutes) {
@@ -61,7 +61,7 @@ function setupRoutes() {
         models[prop].init(apiModel);
     }
     //Not sure if these should be in this class
-    apiModel.registerPublicRoute('get', 'displayCurrentVersion', '', currentVersion, null, 'Gets the current API version information.');
+    //apiModel.registerPublicRoute('get', 'displayCurrentVersion', '', currentVersion, null, 'Gets the current API version information.');
     apiModel.registerPublicRoute('get', 'displayAvailableRoutes', '/routes/', getRoutes, null, 'Displays the available routes.');
 
 }
