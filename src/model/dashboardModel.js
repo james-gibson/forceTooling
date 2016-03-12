@@ -33,15 +33,15 @@ var dashboard =function(req, res, next) {
 
         objects.map(function(x) {
             console.log(x.name);
-            if(!objectMap[x.name]) {
+            if (!objectMap[x.name]) {
                 objectMap[x.name] = x;
             }
         });
 
         var results = objects.map(function(x) {
             var customChildren = [];
-            for(var i  in x.childRelationships) {
-                if(objectMap[x.childRelationships[i].childSObject]) {
+            for (var i  in x.childRelationships) {
+                if (objectMap[x.childRelationships[i].childSObject]) {
                     customChildren.push(x.childRelationships[i]);
                 }
             }

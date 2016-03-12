@@ -33,7 +33,7 @@ function getRoutes(req, res) {
 
 function setup(app) {
     apiModel.routeRegistered.on('registeredSuccessfully', function (route) {
-        if(!route.method) {
+        if (!route.method) {
             // throw error
         } else {
             preRegisterRoute(route);
@@ -57,7 +57,7 @@ function preRegisterRoute(route) {
 }
 
 function setupRoutes() {
-    for(var prop in models) {
+    for (var prop in models) {
         models[prop].init(apiModel);
     }
     //Not sure if these should be in this class
