@@ -15,11 +15,11 @@ var init = function(apiModel) {
 }
 
 
-var dashboard =function(req, res, next){
+var dashboard =function(req, res, next) {
     listCustomObjects.init(conn);
     
     //describeSObject.init(conn);
-    function render(result){
+    function render(result) {
         //var a = describeSObject.execute(result[0].name);
         res.render('dashboard', { title: 'Dashboard',
                                   token: req.query.token,
@@ -28,7 +28,7 @@ var dashboard =function(req, res, next){
     }
     var p = listCustomObjects.execute();
 
-    p.then(function(objects){
+    p.then(function(objects) {
         var objectMap = {};
 
         objects.map(function(x) {
@@ -40,8 +40,8 @@ var dashboard =function(req, res, next){
 
         var results = objects.map(function(x) {
             var customChildren = [];
-            for(var i  in x.childRelationships){
-                if(objectMap[x.childRelationships[i].childSObject]){
+            for(var i  in x.childRelationships) {
+                if(objectMap[x.childRelationships[i].childSObject]) {
                     customChildren.push(x.childRelationships[i]);
                 }
             }

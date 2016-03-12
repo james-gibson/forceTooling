@@ -57,7 +57,7 @@ function preRegisterRoute(route) {
 }
 
 function setupRoutes() {
-    for(var prop in models){
+    for(var prop in models) {
         models[prop].init(apiModel);
     }
     //Not sure if these should be in this class

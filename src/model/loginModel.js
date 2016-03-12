@@ -18,7 +18,7 @@ var init = function(apiModel) {
 //
 //});
 
-var login = function(req, res, next){
+var login = function(req, res, next) {
     var user = req.query.user;
     var password = req.query.password;
 
