@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
     grunt.config.init({
         watch:{
-            files: ['gruntfile.js', './src/**/*.js', 'test/**/*.js'],
+            files: ['gruntfile.js', './**/*.js', 'test/**/*.js'],
             tasks: ['eslint', 'mochaTest']
         },
         eslint: {
