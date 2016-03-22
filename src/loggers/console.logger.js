@@ -19,13 +19,17 @@ var init = function (cfg) {
 
     if (config.levels) {
         config.levels.forEach(function (logLevel) {
-            activeLevels[logLevel] = true;
+            activeLevels[logLevel.toUpperCase()] = true;
         });
     }
 
     if (config.colors) {
         config.colors.forEach(function (levelColor) {
-            levelColors[levelColor.level] = colors[levelColor.color.toLowerCase()];
+            if (!colors[levelColor.color.toLowerCase()]) {
+                throw new Error('Console color [' + levelColor.color.toLowerCase() + '] is not available.');
+            } else {
+                levelColors[levelColor.level.toUpperCase()] = colors[levelColor.color.toLowerCase()];
+            }
         });
     }
 };
