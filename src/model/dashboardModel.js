@@ -16,7 +16,7 @@ var init = function(apiModel) {
 
 var dashboard =function(req, res, next) {
     listCustomObjects.init(conn);
-    
+
     //describeSObject.init(conn);
     function render(result) {
         //var a = describeSObject.execute(result[0].name);
@@ -32,7 +32,6 @@ var dashboard =function(req, res, next) {
         var objectMap = {};
 
         objects.map(function(x) {
-            console.log(x.name);
             if (!objectMap[x.name]) {
                 objectMap[x.name] = x;
             }

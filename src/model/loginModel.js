@@ -22,10 +22,8 @@ var login = function(req, res, next) {
     var user = req.query.user;
     var password = req.query.password;
 
-    console.log(user, password);
-
     conn.login(user, password, function(err, userInfo) {
-        if (err) { return console.error(err); }
+        if (err) { throw err; }
         res.redirect('/dashboard/?token=' + conn.accessToken);
     });
 }

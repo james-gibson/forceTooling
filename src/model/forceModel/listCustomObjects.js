@@ -1,8 +1,11 @@
 var listObjects = require('./listObjects.js');
 var conn;
 function init(connection) {
-    if (!connection && !this.conn) this.conn = require('../ForceConnection.js').connection;
-    else { conn = connection;}
+    if (!connection && !this.conn) {
+        this.conn = require('../ForceConnection.js').connection;
+    } else {
+        conn = connection;
+    }
     listObjects.init(conn);
 }
 
@@ -19,7 +22,7 @@ function execute() {
         listObjects.execute()
             .then(function(obj) {
                 results = obj.map(isCustomObject)
-                           .filter(function(n) { return n != undefined });
+                           .filter(function(n) { return n !== undefined });
 
                 var pendingDescribes = results.map(function(x) {
                     var describePromise = new Promise(function(resolve, reject) {

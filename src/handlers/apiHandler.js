@@ -19,6 +19,7 @@ function getRoutes(req, res) {
     var urls = [];
     var apiRoutes = apiModel.routes;
     for (var route in apiRoutes) {
+        if (!apiRoutes[route]) { continue; }
         var url = {};
         url[route] = {
             'description': apiRoutes[route].description
@@ -42,7 +43,7 @@ function setup(app) {
     });
 
     apiModel.routeRegisteredError.on('registrationError', function(route) {
-        console.log('Unable to register route:', route);
+        throw new Error('Unable to register route:', route);
     });
 
     setupRoutes();
@@ -52,18 +53,20 @@ function preRegisterRoute(route) {
     var tempRoute = route;
 
     if (config.logRouteRegistration) {
-        console.log(JSON.stringify(tempRoute));
+        throw new Error("Teagan!!!");
+        //console.log(JSON.stringify(tempRoute));
     }
 }
 
 function setupRoutes() {
     for (var prop in models) {
-        models[prop].init(apiModel);
+        if (models[prop]) {
+            models[prop].init(apiModel);
+        }
     }
     //Not sure if these should be in this class
     //apiModel.registerPublicRoute('get', 'displayCurrentVersion', '', currentVersion, null, 'Gets the current API version information.');
     apiModel.registerPublicRoute('get', 'displayAvailableRoutes', '/routes/', getRoutes, null, 'Displays the available routes.');
-
 }
 
 exports.setup = setup;
