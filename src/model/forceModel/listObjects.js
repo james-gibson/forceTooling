@@ -1,13 +1,13 @@
 "use strict";
 var conn = require('../ForceConnection.js').connection;
 var fs = require('fs');
-function init(connection){
+function init(connection) {
     if (connection) this.conn = connection;
 }
 
-function execute(){
-    var promise = new Promise(function(resolve, reject){
-        if(!conn) {reject('Invalid Force.com connection');}
+function execute() {
+    var promise = new Promise(function(resolve, reject) {
+        if (!conn) {reject('Invalid Force.com connection');}
 
         conn.describeGlobal$(function(err, res) {
             if (err) { return promise.reject(err); }

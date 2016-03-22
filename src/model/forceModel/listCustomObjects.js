@@ -1,25 +1,25 @@
 var listObjects = require('./listObjects.js');
 var conn;
-function init(connection){
+function init(connection) {
     if (!connection && !this.conn) this.conn = require('../ForceConnection.js').connection;
     else { conn = connection;}
     listObjects.init(conn);
 }
 
-function isCustomObject(value){
+function isCustomObject(value) {
     return value.custom ? value : undefined;
 }
 
-function execute(){
-    var promise = new Promise(function(resolve, reject){
-        if(!conn) {reject('Invalid Force.com connection');}
+function execute() {
+    var promise = new Promise(function(resolve, reject) {
+        if (!conn) {reject('Invalid Force.com connection');}
 
         var results = [];
 
         listObjects.execute()
-            .then(function(obj){
+            .then(function(obj) {
                 results = obj.map(isCustomObject)
-                           .filter(function(n){ return n != undefined });
+                           .filter(function(n) { return n != undefined });
 
                 var pendingDescribes = results.map(function(x) {
                     var describePromise = new Promise(function(resolve, reject) {

@@ -20,9 +20,10 @@ var dashboard =function(req, res, next) {
     //describeSObject.init(conn);
     function render(result) {
         //var a = describeSObject.execute(result[0].name);
-        res.render('dashboard', { title: 'Dashboard',
-                                  token: req.query.token,
-                                  objects: result
+        res.render('dashboard', {
+            title: 'Dashboard',
+            token: req.query.token,
+            objects: result
         });
     }
     var p = listCustomObjects.execute();
