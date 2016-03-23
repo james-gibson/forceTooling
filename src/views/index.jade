@@ -1,4 +1,41 @@
 extends layout
 block content
-      h1= title
-      p Welcome to #{title}
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    hgroup
+        h1 ForceTooling
+        h3 By James Gibson & Teagan Glenn
+
+    form
+        div(class="group")
+            input(id="username" type="email")
+            span(class="highlight")
+            span(class="bar")
+            label Username
+        div(class="group")
+            input(id="userPassword" type="password")
+            span(class="highlight")
+            span(class="bar")
+            label Password
+        button(onClick="onLoginClick()" type="button" class="button buttonBlue") Login
+            div(class="ripples buttonRipples")
+                span(class="ripplesCircle")
+
+    footer
+        p Made in cooperation with
+        br
+        a(href="http://www.apto.com/" target="_blank")
+            img(class="sponsor" src="https://cdn2.hubspot.net/hub/223944/hubfs/AptoLogo.png")
+
+    script(type="text/javascript").
+        function onLoginClick() {
+            var $j = jQuery.noConflict();
+            var user = $j('#username').val();
+            var password = $j('#userPassword').val();
+            var url = "/login/?user=" + user +"&password=" + password;
+
+            console.log(url);
+            window.location.href = url;
+        }
+
+
+
