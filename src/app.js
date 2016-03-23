@@ -5,17 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var apiHandler = require('./src/handlers/ApiHandler.js');
+var apiHandler = require('./handlers/apiHandler.js');
 
-var routes = require('./src/routes/index');
-var users = require('./src/routes/users');
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
-var admin = require('./src/model/dashboardModel');
+var admin = require('./model/dashboardModel');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
