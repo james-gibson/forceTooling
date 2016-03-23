@@ -2,6 +2,7 @@
 var conn = require('./ForceConnection.js').connection;
 var listCustomObjects = require('./forceModel/listCustomObjects.js');
 var describeSObject = require('./forceModel/describeSObject.js');
+var logger = require('../services/logger.js');
 
 var init = function(apiModel) {
     apiModel.registerSecuredRoute('get'

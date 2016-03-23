@@ -1,5 +1,6 @@
 var config = require('../../config.json');
 var apiModel = require('../model/ApiModel.js');
+var logger = require('../services/logger.js');
 
 var models = {
     "login" : require('../model/loginModel'),
@@ -53,8 +54,7 @@ function preRegisterRoute(route) {
     var tempRoute = route;
 
     if (config.logRouteRegistration) {
-        throw new Error("Teagan!!!");
-        //console.log(JSON.stringify(tempRoute));
+        logger.info(JSON.stringify(tempRoute));
     }
 }
 

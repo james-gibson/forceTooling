@@ -4,5 +4,19 @@
     "enforceTrailingSlash": true,
     "enforceLeadingSlash": true,
     "logRouteRegistration": true,
-    "salesForceLoginURL": "https://login.salesforce.com"
+    "salesForceLoginURL": "https://login.salesforce.com",
+    "loggers": [{
+        "name": "console",
+        "levels": [
+            "INFO",
+            "WARN",
+            "DEBUG",
+            "ERROR",
+            "FATAL"
+        ],
+        "colors": [{
+            "level": "INFO",
+            "color": "gray"
+        }]
+    }]
 }

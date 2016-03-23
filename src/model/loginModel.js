@@ -1,4 +1,5 @@
 var conn = require('./ForceConnection.js').connection;
+var logger = require('../services/logger.js');
 
 var init = function(apiModel) {
     apiModel.registerPublicRoute('get'
