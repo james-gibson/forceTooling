@@ -2,6 +2,7 @@
 var conn = require('./ForceConnection.js').connection;
 var listCustomObjects = require('./forceModel/listCustomObjects.js');
 var describeSObject = require('./forceModel/describeSObject.js');
+var logger = require('../services/logger.js');
 
 var init = function(apiModel) {
     apiModel.registerSecuredRoute('get'
@@ -31,7 +32,7 @@ var dashboard =function(req,res,next){
         var objectMap = {};
 
         objects.map(function(x) {
-            console.log(x.name);
+            logger.debug(x.name);
             if(!objectMap[x.name]) {
                 objectMap[x.name] = x;
             }

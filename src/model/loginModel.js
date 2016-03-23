@@ -1,4 +1,5 @@
 var conn = require('./ForceConnection.js').connection;
+var logger = require('../services/logger.js');
 
 var init = function(apiModel) {
     apiModel.registerPublicRoute('get'
@@ -22,7 +23,7 @@ var login = function(req,res,next){
     var user = req.query.user;
     var password = req.query.password;
 
-    console.log(user,password);
+    logger.debug(user,password);
 
     conn.login(user, password, function(err, userInfo) {
         if (err) { return console.error(err); }

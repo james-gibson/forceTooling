@@ -1,5 +1,6 @@
 var config = require('../../config.json');
 var apiModel = require('../model/ApiModel.js');
+var logger = require('../services/logger.js');
 
 var models = {
     "login" : require('../model/loginModel'),
@@ -42,7 +43,7 @@ function setup(app) {
     });
 
     apiModel.routeRegisteredError.on('registrationError', function (route) {
-        console.log('Unable to register route:', route);
+        logger.error('Unable to register route:', route);
     });
 
     setupRoutes();
@@ -52,7 +53,7 @@ function preRegisterRoute(route) {
     var tempRoute = route;
 
     if (config.logRouteRegistration) {
-        console.log(JSON.stringify(tempRoute));
+        logger.info(JSON.stringify(tempRoute), 'TEST');
     }
 }
 
