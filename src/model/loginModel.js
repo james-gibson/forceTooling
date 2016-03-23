@@ -8,7 +8,7 @@ var init = function(apiModel) {
         , login
         , {
             'user':   {'required': true, 'dataType': 'string'}
-            ,'password':{'required': true, 'dataType': 'string'}
+            , 'password':{'required': true, 'dataType': 'string'}
         }
         , 'Login to a salesforce org');
 }
@@ -19,14 +19,12 @@ var init = function(apiModel) {
 //
 //});
 
-var login = function(req,res,next){
+var login = function(req, res, next) {
     var user = req.query.user;
     var password = req.query.password;
 
-    logger.debug(user,password);
-
     conn.login(user, password, function(err, userInfo) {
-        if (err) { return console.error(err); }
+        if (err) { throw err; }
         res.redirect('/dashboard/?token=' + conn.accessToken);
     });
 }
