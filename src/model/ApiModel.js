@@ -11,10 +11,9 @@ const PUBLIC = "public"
 
 var routes = {};
 
-function applyPatternSettings(urlPattern)
-{
-    var prePattern = (config.enforceLeadingSlash && !urlPattern.match(/^\//)) ? '/' : '';
-    var postPattern = (config.enforceTrailingSlash && !urlPattern.match(/\[\/\]$/)) ? '[/]?' : '';
+function applyPatternSettings(urlPattern) {
+    var prePattern = config.enforceLeadingSlash && !urlPattern.match(/^\//) ? '/' : '';
+    var postPattern = config.enforceTrailingSlash && !urlPattern.match(/\[\/\]$/) ? '[/]?' : '';
     return prePattern + (urlPattern ? urlPattern.replace(/\/$/, '') + postPattern : '');
 }
 
@@ -32,7 +31,7 @@ var registerRoute = curry(function(securityLevel, category, method, name, urlPat
         , "description": description
     };
 
-    if(routes[routeKey]) {
+    if (routes[routeKey]) {
         registeredRouteError.emit('registrationError', route);
         return;
     }
