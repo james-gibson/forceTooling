@@ -34,6 +34,8 @@ var init = function (cfg) {
 };
 
 var log = curry(function (logLevel, message) {
+    if (!loggers || !(loggers instanceof Array)) return;
+
     loggers.forEach(function (logger) {
         if (logger.canLog(logLevel)) {
             logger.log(logLevel, message);
