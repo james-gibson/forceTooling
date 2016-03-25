@@ -27,15 +27,29 @@ block content
             img(class="sponsor" src="https://cdn2.hubspot.net/hub/223944/hubfs/AptoLogo.png")
 
     script(type="text/javascript").
-        function onLoginClick() {
+        (function run(){
             var $j = jQuery.noConflict();
-            var user = $j('#username').val();
-            var password = $j('#userPassword').val();
-            var url = "/login/?user=" + user +"&password=" + password;
+            $j(window, document, undefined).ready(function () {
+                $j('input').blur(function () {
+                    var $this = $j(this);
+                    if ($this.val())
+                        $this.addClass('used');
+                    else
+                        $this.removeClass('used');
+                });
+            });
 
-            console.log(url);
-            window.location.href = url;
-        }
+            function onLoginClick() {
+
+                var user = $j('#username').val();
+                var password = $j('#userPassword').val();
+                var url = "/login/?user=" + user + "&password=" + password;
+
+                console.log(url);
+                window.location.href = url;
+            }
+        })();
+
 
 
 
