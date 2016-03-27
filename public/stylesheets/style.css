@@ -4,26 +4,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: #00B7FF;
-}
-
-p {
-  display: inline;
-}
-
-p.label {
-  font-weight: bold;
-}
-
-p.label:after {
-  content: ': ';
-}
-
-.inline-block {
-  display: inline-block;
-}
-
 .sObjectList {
   @apply(--layout-vertical);
   @apply(--layout-wrap);
