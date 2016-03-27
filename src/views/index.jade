@@ -19,6 +19,7 @@ block content
         button(onClick="onLoginClick()" type="button" class="button buttonBlue") Login
             div(class="ripples buttonRipples")
                 span(class="ripplesCircle")
+        paper-spinner(active style="display: none;" class="login")
 
     footer
         p Made in cooperation with
@@ -27,28 +28,28 @@ block content
             img(class="sponsor" src="https://cdn2.hubspot.net/hub/223944/hubfs/AptoLogo.png")
 
     script(type="text/javascript").
-        (function run(){
-            var $j = jQuery.noConflict();
-            $j(window, document, undefined).ready(function () {
-                $j('input').blur(function () {
-                    var $this = $j(this);
-                    if ($this.val())
-                        $this.addClass('used');
-                    else
-                        $this.removeClass('used');
-                });
+        var $j = jQuery.noConflict();
+
+        $j(window, document, undefined).ready(function () {
+            $j('input').blur(function () {
+                var $this = $j(this);
+                if ($this.val())
+                    $this.addClass('used');
+                else
+                    $this.removeClass('used');
             });
+        });
 
-            function onLoginClick() {
+        function onLoginClick() {
+            $j('paper-spinner.login').toggle();
+            var user = $j('#username').val();
+            var password = $j('#userPassword').val();
+            var url = "/login/?user=" + user + "&password=" + password;
 
-                var user = $j('#username').val();
-                var password = $j('#userPassword').val();
-                var url = "/login/?user=" + user + "&password=" + password;
+            console.log(url);
+            window.location.href = url;
+        }
 
-                console.log(url);
-                window.location.href = url;
-            }
-        })();
 
 
 
