@@ -33,6 +33,7 @@ var dashboard =function(req, res, next) {
         var objectMap = {};
 
         objects.map(function(x) {
+            x.describeUri = '/describe/' + x.name + '?token=' + req.query.token;
             if (!objectMap[x.name]) {
                 objectMap[x.name] = x;
             }
