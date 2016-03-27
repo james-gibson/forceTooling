@@ -1,15 +1,40 @@
 extends layout
 block content
-    h1= title
+    paper-drawer-panel(responsive-width="1100px" right-drawer)
+        div(drawer)
+            paper-header-panel
+                paper-toolbar
+                    span(class="title") Settings
+                div(class="fit" role="listbox")
+                    paper-icon-item
+                        iron-icon(icon="icons:delete" item-icon)
+                        paper-item-body
+                            div Enable Object Deletion
+                            //div(secondary) Default is false
+                        paper-toggle-button
+        div(main class="content")
+            paper-toolbar(class="red")
+                span(class="title") ForceTooling
+                paper-icon-button(icon="settings" paper-drawer-toggle)
+            paper-card(heading="Custom Objects")
+                div( role="listbox")
+                    each obj in objects
+                        paper-icon-item(class="fit")
+                            a(href=obj.describeUri tabindex="-1")
+                                iron-icon(icon="icons:create" item-icon link)
 
-    div(class="sObjectList")
-        each obj in objects
-            paper-card(heading=obj.label)
-                div(class="card-content")
-
-                div(class="card-actions" data-childRelationships=obj.childRelationships.length )
-                    div(class="horizontal justified")
-                        if obj.deletable
-                            iron-icon(icon="icons:delete")
-                        each child in obj.childRelationships
-                            iron-icon(icon="places:child-care")
+                            paper-item-body
+                                div #{obj.label}
+            //div(class="sObjectList")
+            //    each obj in objects
+            //        paper-card(heading=obj.label)
+            //            div(class="card-content")
+            //
+            //
+            //            div(class="card-actions" data-childRelationships=obj.childRelationships.length )
+            //                div(class="horizontal justified")
+            //                    paper-icon-button(icon="icons:settings")
+            //                    if obj.deletable
+            //                        iron-icon(icon="icons:delete")
+            //                    each child in obj.childRelationships
+            //                        iron-icon(icon="places:child-care")

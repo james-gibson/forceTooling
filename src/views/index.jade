@@ -41,7 +41,7 @@ block content
         });
 
         function onLoginClick() {
-            $j('paper-spinner.login').toggle();
+            $j('paper-spinner.login').show();
             var user = $j('#username').val();
             var password = $j('#userPassword').val();
             var url = "/login/?user=" + user + "&password=" + password;
