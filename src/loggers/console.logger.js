@@ -10,21 +10,9 @@ var levelColors = {
     FATAL: colors.red
 };
 
-var canLog = function (logLevel) {
-    return activeLevels[logLevel];
-}
-
-var init = function (cfg) {
-    config = cfg || {};
-
-    if (config.levels) {
-        config.levels.forEach(function (logLevel) {
-            activeLevels[logLevel.toUpperCase()] = true;
-        });
-    }
-
-    if (config.colors) {
-        config.colors.forEach(function (levelColor) {
+function setColors(colors) {
+    if (colors && colors instanceof Array) {
+        colors.forEach(function(levelColor) {
             if (!colors[levelColor.color.toLowerCase()]) {
                 throw new Error('Console color [' + levelColor.color.toLowerCase() + '] is not available.');
             } else {
@@ -32,11 +20,31 @@ var init = function (cfg) {
             }
         });
     }
-};
+}
 
-var log = function (logLevel, message) {
+function setLevels(levels) {
+    if (levels && levels instanceof Array) {
+        levels.forEach(function(logLevel) {
+            activeLevels[logLevel.toUpperCase()] = true;
+        });
+    }
+}
+
+function canLog(logLevel) {
+    return activeLevels[logLevel];
+}
+
+function init(cfg) {
+    config = cfg || {};
+
+    setLevels(cfg.levels);
+
+    setColors(cfg.colors);
+}
+
+function log(logLevel, message) {
     console.log(levelColors[logLevel](message));
-};
+}
 
 exports.init = init;
 exports.log = log;
