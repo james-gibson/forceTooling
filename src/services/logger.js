@@ -11,7 +11,7 @@ var LEVEL = {
 var config;
 var loggers = [];
 
-var loadLogger = function (loggerConfig) {
+function loadLogger(loggerConfig) {
     var logger = require('../loggers/' + loggerConfig.name + '.logger.js');
 
     if (logger.init) {
@@ -19,24 +19,28 @@ var loadLogger = function (loggerConfig) {
     }
 
     loggers.push(logger);
-};
+}
 
-var init = function (cfg) {
-    if (config) return;
-
-    config = cfg || {};
-
-    if (config.loggers) {
-        config.loggers.forEach(function (loggerConfig) {
+function loadLoggers(loggers) {
+    if (loggers && loggers instanceof Array) {
+        loggers.forEach(function(loggerConfig) {
             loadLogger(loggerConfig);
         });
     }
-};
+}
 
-var log = curry(function (logLevel, message) {
-    if (!loggers || !(loggers instanceof Array)) return;
+function init(cfg) {
+    if (config) { return; }
 
-    loggers.forEach(function (logger) {
+    config = cfg || {};
+
+    loadLoggers(config.loggers);
+}
+
+var log = curry(function(logLevel, message) {
+    if (!loggers || !(loggers instanceof Array)) { return; }
+
+    loggers.forEach(function(logger) {
         if (logger.canLog(logLevel)) {
             logger.log(logLevel, message);
         }
