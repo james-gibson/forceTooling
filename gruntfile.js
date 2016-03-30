@@ -20,22 +20,22 @@ module.exports = function(grunt) {
         compass: {
           clean: {
             options: {
-              sassDir: 'resource-bundles',
-              cssDir: 'resource-bundles',
+              sassDir: 'public/stylesheets',
+              cssDir: 'public/stylesheets',
               clean: true
             }
           },
           compileDevelopment: {
             options: {
-              sassDir: 'resource-bundles',
-              cssDir: 'resource-bundles',
+              sassDir: 'public/stylesheets',
+              cssDir: 'public/stylesheets',
               environment: 'development'
             }
           },
           watch: {
             options: {
-              sassDir: 'resource-bundles',
-              cssDir: 'resource-bundles',
+              sassDir: 'public/stylesheets',
+              cssDir: 'public/stylesheets',
               watch: true
             }
           }
