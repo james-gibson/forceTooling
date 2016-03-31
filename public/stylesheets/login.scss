@@ -72,22 +72,25 @@ input:focus ~ label, input.used ~ label {
     position: relative;
     display: block;
     width: 100%;
+
+    &:before, &:after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #4a89dc;
+        transition: all 0.2s ease;
+    }
+
+    &:before {
+        left: 50%;
+    }
+
+    &:after {
+        right: 50%;
+    }
 }
-
-.bar:before, .bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: #4a89dc;
-    transition: all 0.2s ease;
-}
-
-.bar:before { left: 50%; }
-
-.bar:after { right: 50%; }
-
 
 /* active */
 
@@ -142,18 +145,22 @@ input:focus ~ .highlight {
     border-bottom: 2px solid #3160B6;
     cursor: pointer;
     transition: all 0.15s ease;
-}
-.button:focus { outline: 0; }
 
+    &:focus {
+        outline: 0;
+    }
+}
 
 /* Button modifiers */
 
 .buttonBlue {
     background: #4a89dc;
     text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
-}
 
-.buttonBlue:hover { background: #357bd8; }
+    &:hover {
+        background: #357bd8;
+    }
+}
 
 
 /* Ripples container */
@@ -166,6 +173,10 @@ input:focus ~ .highlight {
     height: 100%;
     overflow: hidden;
     background: transparent;
+
+    &.is-active .ripplesCircle {
+        animation: ripples .4s ease-in;
+    }
 }
 
 
@@ -182,11 +193,6 @@ input:focus ~ .highlight {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
 }
-
-.ripples.is-active .ripplesCircle {
-    animation: ripples .4s ease-in;
-}
-
 
 /* Ripples animation */
 
@@ -214,18 +220,22 @@ footer a {
     color: #4a89dc;
     text-decoration: none;
     transition: all .2s ease;
-}
 
-footer a:hover {
-    color: #666;
-    text-decoration: underline;
+    &:hover {
+        color: #666;
+        text-decoration: underline;
+    }
 }
 
 footer img {
     width: 80px;
     transition: all .2s ease;
+
+    &:hover {
+        opacity: .83;
+    }
+
+    &:focus, footer a:focus {
+        outline: none;
+    }
 }
-
-footer img:hover { opacity: .83; }
-
-footer img:focus , footer a:focus { outline: none; }
