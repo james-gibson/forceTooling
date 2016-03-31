@@ -43,7 +43,7 @@ function init(cfg) {
 }
 
 function log(logLevel, message) {
-    console.log(levelColors[logLevel](message));
+    console.log(levelColors[logLevel](message)); // eslint-disable-line no-console
 }
 
 exports.init = init;
