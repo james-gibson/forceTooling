@@ -11,9 +11,17 @@ const PUBLIC = "public"
 
 var routes = {};
 
+function getPrePattern(urlPattern) {
+    return config.enforceLeadingSlash && !urlPattern.match(/^\//) ? '/' : '';
+}
+
+function getPostPattern(urlPattern) {
+    return config.enforceTrailingSlash && !urlPattern.match(/\[\/\]$/) ? '[/]?' : '';
+}
+
 function applyPatternSettings(urlPattern) {
-    var prePattern = config.enforceLeadingSlash && !urlPattern.match(/^\//) ? '/' : '';
-    var postPattern = config.enforceTrailingSlash && !urlPattern.match(/\[\/\]$/) ? '[/]?' : '';
+    var prePattern = getPrePattern(urlPattern);
+    var postPattern = getPostPattern(urlPattern);
     return prePattern + (urlPattern ? urlPattern.replace(/\/$/, '') + postPattern : '');
 }
 
