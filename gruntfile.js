@@ -3,8 +3,18 @@
 module.exports = function(grunt) {
     grunt.config.init({
         watch:{
-            files: ['gruntfile.js', './**/*.js', 'test/**/*.js', './**/*.scss'],
-            tasks: ['compass:clean', 'compass:compileDevelopment', 'eslint', 'mochaTest']
+            files: [
+              'gruntfile.js',
+              './**/*.js',
+              'test/**/*.js',
+              './**/*.scss'
+            ],
+            tasks: [
+              'compass:clean',
+              'compass:compileDevelopment',
+              'eslint',
+              'mochaTest'
+            ]
         },
         eslint: {
           src: ['.']
@@ -53,6 +63,18 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-mocha-test');
       grunt.loadNpmTasks('grunt-exec');
 
-      grunt.registerTask('default', ['compass:clean', 'compass:compileDevelopment', 'eslint', 'mochaTest', 'exec']);
-      grunt.registerTask('development', ['compass:clean', 'compass:compileDevelopment', 'eslint', 'mochaTest', 'exec']);
+      grunt.registerTask('default', [
+        'compass:clean',
+        'compass:compileDevelopment',
+        'eslint',
+        'mochaTest',
+        'exec'
+      ]);
+      grunt.registerTask('development', [
+        'compass:clean',
+        'compass:compileDevelopment',
+        'eslint',
+        'mochaTest',
+        'exec'
+      ]);
     };
