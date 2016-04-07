@@ -38,10 +38,19 @@ block content
                 else
                     $this.removeClass('used');
             });
+            $j('form input[type="password"]').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    login();
+                }
+            });
         });
 
         function onLoginClick() {
-            $j('paper-spinner.login').show();
+            login();
+        }
+
+        function login() {
+            $j('paper-spinner.login').get(0).active = true;
             var user = $j('#username').val();
             var password = $j('#userPassword').val();
             var url = "/login/?user=" + user + "&password=" + password;
