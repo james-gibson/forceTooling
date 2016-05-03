@@ -4,7 +4,8 @@ var logger = require('../services/logger.js');
 
 var models = {
     "login" : require('../model/loginModel'),
-    "dashboard": require('../model/dashboardModel')
+    "dashboard": require('../model/dashboardModel'),
+    "listObjects": require('../model/listObjects')
 }
 function currentVersion(req, res) {
     var result = {
