@@ -26,7 +26,7 @@ function execute() {
 
                 var pendingDescribes = results.map(function(x) {
                     var describePromise = new Promise(function(resolve, reject) {
-                        conn.sobject(x.name).describe(function(err, meta) {
+                        conn.sobject(x.name).describe$(function(err, meta) {
                             if (err) { reject(err); }
                             resolve(meta);
                         });
