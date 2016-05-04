@@ -44,4 +44,31 @@ var listObjects =function(req, res, next) {
     });
 }
 
+var describeObject =function(req, res, next) {
+    var includeStandardObjects = req.query.includeStandardObjects;
+
+    var service = includeStandardObjects ? listObjectsModel : listCustomObjectsModel;
+
+    service.init(conn);
+
+    var p = service.execute();
+
+    p.then(function(objects) {
+        var objectMap = {};
+
+        var results = objects.map(function(x) {
+            var result = {};
+
+            result.describeUri = '/objects/' + x.name + '?token=' + req.query.token;
+            result.name = x.name;
+            result.label = x.label;
+            result.labelPlural = x.labelPlural;
+
+            return result;
+        });
+
+        res.json(results)
+    });
+}
+
 exports.init = init;
