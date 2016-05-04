@@ -14,7 +14,7 @@ var init = function(apiModel) {
             'token':   {'required': true, 'dataType': 'string'},
             'includeStandardObjects':   {'required': false, 'dataType': 'boolean'}
         }
-        , 'JSON list of Objects');
+        , 'JSON object description');
 
     apiModel.registerSecuredRoute('get'
         , 'objects'
