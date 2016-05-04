@@ -21,8 +21,7 @@ var init = function(apiModel) {
         , '/objects/:objectName'
         , describeObject
         , {
-            'token':   {'required': true, 'dataType': 'string'},
-            'includeStandardObjects':   {'required': false, 'dataType': 'boolean'}
+            'token':   {'required': true, 'dataType': 'string'}
         }
         , 'JSON list of Objects');
 }
